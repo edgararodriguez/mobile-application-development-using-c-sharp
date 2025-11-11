@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using C971.Data;
 using C971.Repositories;
+using C971.ViewModels.Terms;
+using C971.Pages.Terms;
 
 namespace C971
 {
@@ -25,6 +27,9 @@ namespace C971
             builder.Services.AddSingleton<ITermRepository, TermRepository>();
             builder.Services.AddSingleton<ICourseRepository, CourseRepository>();
             builder.Services.AddSingleton<IAssessmentRepository, AssessmentRepository>();
+            // Register ViewModels and Pages
+            builder.Services.AddTransient<TermsListViewModel>();
+            builder.Services.AddTransient<TermsListPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();

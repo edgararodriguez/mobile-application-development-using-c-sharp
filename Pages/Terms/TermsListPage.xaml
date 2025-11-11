@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="C971.Pages.Terms.TermsListPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Terms">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Refresh" Command="{Binding LoadTermsAsyncCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <Grid Padding="12">
+        <CollectionView ItemsSource="{Binding Terms}">
+            <CollectionView.EmptyView>
+                <Label Text="No terms yet."
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Opacity="0.6" />
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="{Binding Title}" />
+                        <Label Grid.Column="1"
+                               Text="{Binding Start, StringFormat='{0:MM/dd}'}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
