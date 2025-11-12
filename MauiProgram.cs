@@ -27,6 +27,10 @@ namespace C971
             builder.Services.AddSingleton<ITermRepository, TermRepository>();
             builder.Services.AddSingleton<ICourseRepository, CourseRepository>();
             builder.Services.AddSingleton<IAssessmentRepository, AssessmentRepository>();
+
+            // Register Demo Data Seeder
+            builder.Services.AddSingleton<DemoDataSeeder>();
+
             // Register ViewModels and Pages
             builder.Services.AddTransient<TermsListViewModel>();
             builder.Services.AddTransient<TermsListPage>();
@@ -35,7 +39,17 @@ namespace C971
             builder.Logging.AddDebug();
 #endif
 
-            return builder.Build();
+            var app = builder.Build();
+
+            // 🔹 Run DemoDataSeeder once to insert sample data (C6 requirement)
+            _ = Task.Run(async () =>
+            {
+                using var scope = app.Services.CreateScope();
+                var seeder = scope.ServiceProvider.GetRequiredService<DemoDataSeeder>();
+                await seeder.SeedAsync();
+            });
+
+            return app;
         }
     }
 }

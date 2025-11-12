@@ -4,13 +4,20 @@ namespace C971.Pages.Terms;
 
 public partial class TermsListPage : ContentPage
 {
-    // DI will inject the VM because you registered it in MauiProgram
     public TermsListPage(TermsListViewModel vm)
     {
         InitializeComponent();
         BindingContext = vm;
+    }
 
-        // optionally auto-load
-        // _ = vm.LoadTermsAsync();
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        if (BindingContext is TermsListViewModel vm)
+        {
+            // avoid double-loads if you like:
+            if (vm.Terms.Count == 0)
+                await vm.LoadTermsAsync();
+        }
     }
 }
