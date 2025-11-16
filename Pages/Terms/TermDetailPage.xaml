@@ -3,67 +3,30 @@
     x:Class="C971.Pages.Terms.TermDetailPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:models="clr-namespace=C971.Models"
     Title="Term Details">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit"
+                     Clicked="OnEditTermClicked" />
+    </ContentPage.ToolbarItems>
+
     <ScrollView>
-        <VerticalStackLayout Padding="16" Spacing="16">
+        <VerticalStackLayout Padding="20" Spacing="12">
 
-            <!-- Term Title -->
-            <Label Text="{Binding Title}"
-                   FontSize="24"
-                   FontAttributes="Bold" />
+            <Label Text="Title" FontAttributes="Bold" />
+            <Label Text="{Binding Title}" />
 
-            <!-- Term summary (read-only) -->
-            <Frame Padding="12"
-                   HasShadow="True"
-                   CornerRadius="8">
-                <Grid ColumnDefinitions="Auto,*"
-                      RowDefinitions="Auto,Auto,Auto">
+            <Label Text="Start Date" FontAttributes="Bold" />
+            <Label Text="{Binding StartDate, StringFormat='{}{0:MM/dd/yyyy}'}" />
 
-                    <Label Grid.Row="0" Grid.Column="0"
-                           Text="Start Date:"
-                           FontAttributes="Bold" />
-                    <Label Grid.Row="0" Grid.Column="1"
-                           Text="{Binding StartDate,
-                                          StringFormat='{0:MM/dd/yyyy}'}" />
+            <Label Text="End Date" FontAttributes="Bold" />
+            <Label Text="{Binding EndDate, StringFormat='{}{0:MM/dd/yyyy}'}" />
 
-                    <Label Grid.Row="1" Grid.Column="0"
-                           Text="End Date:"
-                           FontAttributes="Bold" />
-                    <Label Grid.Row="1" Grid.Column="1"
-                           Text="{Binding EndDate,
-                                          StringFormat='{0:MM/dd/yyyy}'}" />
+            <Label Text="Status" FontAttributes="Bold" />
+            <Label Text="{Binding Status}" />
 
-                    <Label Grid.Row="2" Grid.Column="0"
-                           Text="Status:"
-                           FontAttributes="Bold" />
-                    <Label Grid.Row="2" Grid.Column="1"
-                           Text="{Binding Status}" />
-                </Grid>
-            </Frame>
-
-            <!-- Courses header / C2 starter -->
-            <Label Text="Courses in this Term"
-                   FontSize="18"
-                   FontAttributes="Bold" />
-
-            <!-- Placeholder for future course list -->
-            <Frame Padding="12"
-                   CornerRadius="8"
-                   HasShadow="True">
-                <VerticalStackLayout Spacing="8">
-                    <Label Text="Course list coming soon."
-                           Opacity="0.6"
-                           FontAttributes="Italic" />
-
-                    <!-- Navigation starter for later course pages -->
-                    <Button Text="Manage Courses"
-                            HorizontalOptions="End"
-                            Clicked="OnManageCoursesClicked" />
-                </VerticalStackLayout>
-            </Frame>
-
+            <Button Text="Manage Courses"
+                    Clicked="OnManageCoursesClicked" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

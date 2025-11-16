@@ -8,6 +8,8 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Refresh"
                      Command="{Binding LoadTermsAsyncCommand}" />
+        <ToolbarItem Text="Add"
+                     Clicked="OnAddTermClicked" />
     </ContentPage.ToolbarItems>
 
     <Grid Padding="12">
@@ -33,10 +35,10 @@
                         <!-- Term title -->
                         <Label Text="{Binding Title}" />
 
-                        <!-- FIX: property name is StartDate, not Start -->
+                        <!-- Start date -->
                         <Label Grid.Column="1"
                                Text="{Binding StartDate,
-                                      StringFormat='{0:MM/dd}'}" />
+                                      StringFormat='{}{0:MM/dd}'}" />
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
