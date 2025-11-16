@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\edgar\\OneDrive\\Desktop\\School Work\\C971\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D7146960-BAE6-4498-9DF2-50B4BD4DCAEF}|C971.csproj|c:\\users\\edgar\\onedrive\\desktop\\school work\\c971\\pages\\terms\\termslistpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7146960-BAE6-4498-9DF2-50B4BD4DCAEF}|C971.csproj|solutionrelative:pages\\terms\\termslistpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7146960-BAE6-4498-9DF2-50B4BD4DCAEF}|C971.csproj|c:\\users\\edgar\\onedrive\\desktop\\school work\\c971\\pages\\terms\\termdetailpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7146960-BAE6-4498-9DF2-50B4BD4DCAEF}|C971.csproj|solutionrelative:pages\\terms\\termdetailpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7146960-BAE6-4498-9DF2-50B4BD4DCAEF}|C971.csproj|c:\\users\\edgar\\onedrive\\desktop\\school work\\c971\\pages\\terms\\termslistpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D7146960-BAE6-4498-9DF2-50B4BD4DCAEF}|C971.csproj|solutionrelative:pages\\terms\\termslistpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7146960-BAE6-4498-9DF2-50B4BD4DCAEF}|C971.csproj|c:\\users\\edgar\\onedrive\\desktop\\school work\\c971\\pages\\terms\\termdetailpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D7146960-BAE6-4498-9DF2-50B4BD4DCAEF}|C971.csproj|solutionrelative:pages\\terms\\termdetailpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7146960-BAE6-4498-9DF2-50B4BD4DCAEF}|C971.csproj|c:\\users\\edgar\\onedrive\\desktop\\school work\\c971\\models\\terms.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7146960-BAE6-4498-9DF2-50B4BD4DCAEF}|C971.csproj|solutionrelative:models\\terms.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TermDetailPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\edgar\\OneDrive\\Desktop\\School Work\\C971\\Pages\\Terms\\TermDetailPage.xaml.cs",
+              "RelativeDocumentMoniker": "Pages\\Terms\\TermDetailPage.xaml.cs",
+              "ToolTip": "C:\\Users\\edgar\\OneDrive\\Desktop\\School Work\\C971\\Pages\\Terms\\TermDetailPage.xaml.cs",
+              "RelativeToolTip": "Pages\\Terms\\TermDetailPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T20:13:31.091Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Terms.cs",
+              "DocumentMoniker": "C:\\Users\\edgar\\OneDrive\\Desktop\\School Work\\C971\\Models\\Terms.cs",
+              "RelativeDocumentMoniker": "Models\\Terms.cs",
+              "ToolTip": "C:\\Users\\edgar\\OneDrive\\Desktop\\School Work\\C971\\Models\\Terms.cs",
+              "RelativeToolTip": "Models\\Terms.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T20:00:51.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TermDetailPage.xaml",
+              "DocumentMoniker": "C:\\Users\\edgar\\OneDrive\\Desktop\\School Work\\C971\\Pages\\Terms\\TermDetailPage.xaml",
+              "RelativeDocumentMoniker": "Pages\\Terms\\TermDetailPage.xaml",
+              "ToolTip": "C:\\Users\\edgar\\OneDrive\\Desktop\\School Work\\C971\\Pages\\Terms\\TermDetailPage.xaml",
+              "RelativeToolTip": "Pages\\Terms\\TermDetailPage.xaml",
+              "ViewState": "AgIAACQAAAAAAAAAAAAqwEUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-14T20:16:49.852Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TermsListPage.xaml",
+              "DocumentMoniker": "C:\\Users\\edgar\\OneDrive\\Desktop\\School Work\\C971\\Pages\\Terms\\TermsListPage.xaml",
+              "RelativeDocumentMoniker": "Pages\\Terms\\TermsListPage.xaml",
+              "ToolTip": "C:\\Users\\edgar\\OneDrive\\Desktop\\School Work\\C971\\Pages\\Terms\\TermsListPage.xaml",
+              "RelativeToolTip": "Pages\\Terms\\TermsListPage.xaml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAA8AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-12T05:59:00.862Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TermsListPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\edgar\\OneDrive\\Desktop\\School Work\\C971\\Pages\\Terms\\TermsListPage.xaml.cs",
+              "RelativeDocumentMoniker": "Pages\\Terms\\TermsListPage.xaml.cs",
+              "ToolTip": "C:\\Users\\edgar\\OneDrive\\Desktop\\School Work\\C971\\Pages\\Terms\\TermsListPage.xaml.cs",
+              "RelativeToolTip": "Pages\\Terms\\TermsListPage.xaml.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAqwBQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T05:54:38.353Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

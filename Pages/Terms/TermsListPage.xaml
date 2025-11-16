@@ -6,17 +6,22 @@
     Title="Terms">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Refresh" Command="{Binding LoadTermsAsyncCommand}" />
+        <ToolbarItem Text="Refresh"
+                     Command="{Binding LoadTermsAsyncCommand}" />
     </ContentPage.ToolbarItems>
 
     <Grid Padding="12">
-        <CollectionView ItemsSource="{Binding Terms}">
+        <CollectionView ItemsSource="{Binding Terms}"
+                        SelectionMode="Single"
+                        SelectionChanged="OnTermSelectionChanged">
+
             <CollectionView.EmptyView>
                 <Label Text="No terms yet."
                        HorizontalTextAlignment="Center"
                        VerticalTextAlignment="Center"
                        Opacity="0.6" />
             </CollectionView.EmptyView>
+
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="8">
@@ -25,9 +30,13 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
+                        <!-- Term title -->
                         <Label Text="{Binding Title}" />
+
+                        <!-- FIX: property name is StartDate, not Start -->
                         <Label Grid.Column="1"
-                               Text="{Binding Start, StringFormat='{0:MM/dd}'}" />
+                               Text="{Binding StartDate,
+                                      StringFormat='{0:MM/dd}'}" />
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
