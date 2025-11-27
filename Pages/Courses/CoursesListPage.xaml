@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="C971.Pages.Courses.CoursesListPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:C971.Models"
+    xmlns:viewModels="clr-namespace:C971.ViewModels.Courses"
+    Title="Courses">
+
+    <ContentPage.ToolbarItems>
+        <!-- Optional: pull-to-refresh + toolbar refresh both use same command -->
+        <ToolbarItem Text="Refresh"
+                     Command="{Binding LoadCoursesCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <VerticalStackLayout Padding="16" Spacing="12">
+
+            <!-- Term header -->
+            <Label Text="{Binding Term.Title}"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <Label Text="{Binding Term}"
+                   IsVisible="False" />
+
+            <Label Text="Courses for this term"
+                   FontSize="14"
+                   TextColor="Gray"
+                   HorizontalOptions="Center" />
+
+            <!-- Course list -->
+            <RefreshView Command="{Binding LoadCoursesCommand}">
+                <CollectionView ItemsSource="{Binding Courses}">
+                    <CollectionView.EmptyView>
+                        <Label Text="No courses added for this term yet."
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               TextColor="Gray" />
+                    </CollectionView.EmptyView>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Course">
+                            <Frame Margin="0,6"
+                                   Padding="10"
+                                   HasShadow="False"
+                                   BorderColor="{DynamicResource Gray300}">
+                                <Grid ColumnDefinitions="*,Auto"
+                                      RowDefinitions="Auto,Auto,Auto">
+
+                                    <!-- Title + Status row -->
+                                    <Label Grid.Row="0" Grid.Column="0"
+                                           Text="{Binding Title}"
+                                           FontAttributes="Bold"
+                                           FontSize="16" />
+
+                                    <Label Grid.Row="0" Grid.Column="1"
+                                           Text="{Binding Status}"
+                                           FontSize="12"
+                                           TextColor="Gray" />
+
+                                    <!-- Dates row -->
+                                    <Label Grid.Row="1" Grid.ColumnSpan="2"
+                                           FontSize="13"
+                                           TextColor="Gray">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Start: " />
+                                                <Span Text="{Binding StartDate, StringFormat='{0:d}'}" />
+                                                <Span Text="   •   End: " />
+                                                <Span Text="{Binding EndDate, StringFormat='{0:d}'}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <!-- Instructor row (optional) -->
+                                    <Label Grid.Row="2" Grid.ColumnSpan="2"
+                                           FontSize="13"
+                                           TextColor="Gray"
+                                           IsVisible="{Binding InstructorName, Converter={StaticResource NullToBoolConverter}}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Instructor: " />
+                                                <Span Text="{Binding InstructorName}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

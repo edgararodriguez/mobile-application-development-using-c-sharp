@@ -1,4 +1,5 @@
 using C971.Models;
+using C971.Pages.Courses;
 
 namespace C971.Pages.Terms;
 
@@ -27,10 +28,11 @@ public partial class TermDetailPage : ContentPage
 
     private async void OnManageCoursesClicked(object sender, EventArgs e)
     {
-        await DisplayAlert(
-            "Courses",
-            "This will navigate to the Course list/detail pages for this term once they are implemented.",
-            "OK");
+        if (BindingContext is Term term)
+        {
+            // Navigate to the C1 Courses list for this term
+            await Navigation.PushAsync(new CoursesListPage(term));
+        }
     }
 
     private async void OnEditTermClicked(object sender, EventArgs e)

@@ -47,4 +47,34 @@ public class AppDatabase
 
     public Task<int> DeleteTermAsync(Term term) =>
         Connection.DeleteAsync(term);
+
+    // ---------- COURSE CRUD (for C1 and later tasks) ----------
+
+    /// <summary>
+    /// Gets all courses for a specific term, ordered by start date.
+    /// </summary>
+    public Task<List<Course>> GetCoursesForTermAsync(int termId) =>
+        Connection.Table<Course>()
+                  .Where(c => c.TermId == termId)
+                  .OrderBy(c => c.StartDate)
+                  .ToListAsync();
+
+    public Task<Course?> GetCourseAsync(int id) =>
+        Connection.Table<Course>()
+                  .FirstOrDefaultAsync(c => c.Id == id);
+
+    public Task<int> SaveCourseAsync(Course course)
+    {
+        if (course.Id == 0)
+        {
+            return Connection.InsertAsync(course);
+        }
+        else
+        {
+            return Connection.UpdateAsync(course);
+        }
+    }
+
+    public Task<int> DeleteCourseAsync(Course course) =>
+        Connection.DeleteAsync(course);
 }
