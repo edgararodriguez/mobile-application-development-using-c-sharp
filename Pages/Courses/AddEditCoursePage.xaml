@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="C971.Pages.Courses.AddEditCoursePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:C971.Models"
+    xmlns:viewModels="clr-namespace=C971.ViewModels.Courses"
+    Title="Course">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout Padding="16" Spacing="12">
+
+                <Label Text="Course Title" />
+                <Entry Text="{Binding Course.Title}"
+                       Placeholder="Enter course title" />
+
+                <Label Text="Status" />
+                <Picker Title="Select status"
+                        SelectedItem="{Binding Course.Status}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type models:CourseStatus}">
+                            <models:CourseStatus>InProgress</models:CourseStatus>
+                            <models:CourseStatus>Completed</models:CourseStatus>
+                            <models:CourseStatus>Dropped</models:CourseStatus>
+                            <models:CourseStatus>PlanToTake</models:CourseStatus>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <Label Text="Start Date" />
+                <DatePicker Date="{Binding Course.StartDate}" />
+
+                <Label Text="End Date" />
+                <DatePicker Date="{Binding Course.EndDate}" />
+
+                <Label Text="Instructor Name" />
+                <Entry Text="{Binding Course.InstructorName}" />
+
+                <Label Text="Instructor Phone" />
+                <Entry Text="{Binding Course.InstructorPhone}"
+                       Keyboard="Telephone" />
+
+                <Label Text="Instructor Email" />
+                <Entry Text="{Binding Course.InstructorEmail}"
+                       Keyboard="Email" />
+
+                <Label Text="Notes" />
+                <Editor Text="{Binding Course.Notes}"
+                        AutoSize="TextChanges"
+                        HeightRequest="100" />
+
+                <StackLayout Orientation="Horizontal" Spacing="24">
+                    <StackLayout>
+                        <Label Text="Notify on start" />
+                        <Switch IsToggled="{Binding Course.NotifyOnStart}" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Notify on end" />
+                        <Switch IsToggled="{Binding Course.NotifyOnEnd}" />
+                    </StackLayout>
+                </StackLayout>
+
+                <Grid ColumnDefinitions="*,*"
+                      Margin="0,20,0,0">
+                    <Button Grid.Column="0"
+                            Text="Cancel"
+                            Command="{Binding CancelCommand}" />
+                    <Button Grid.Column="1"
+                            Text="Save"
+                            Command="{Binding SaveCommand}" />
+                </Grid>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

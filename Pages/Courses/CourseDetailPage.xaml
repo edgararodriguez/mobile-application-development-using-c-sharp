@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="C971.Pages.Courses.CourseDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Course Detail">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="OnEditClicked" />
+        <ToolbarItem Text="Delete"
+                     Order="Primary"
+                     Priority="1"
+                     Clicked="OnDeleteClicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout Padding="16" Spacing="8">
+
+                <Label Text="{Binding Title}"
+                       FontSize="24"
+                       FontAttributes="Bold" />
+
+                <Label Text="{Binding Status}"
+                       FontSize="14"
+                       TextColor="Gray" />
+
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Start: " />
+                            <Span Text="{Binding StartDate, StringFormat='{0:d}'}" />
+                            <Span Text="   •   End: " />
+                            <Span Text="{Binding EndDate, StringFormat='{0:d}'}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label Text="Instructor"
+                       FontAttributes="Bold"
+                       Margin="0,12,0,0" />
+                <Label Text="{Binding InstructorName}" />
+                <Label Text="{Binding InstructorPhone}" />
+                <Label Text="{Binding InstructorEmail}" />
+
+                <Label Text="Notes"
+                       FontAttributes="Bold"
+                       Margin="0,12,0,0" />
+                <Label Text="{Binding Notes}" />
+
+                <StackLayout Orientation="Horizontal" Spacing="24" Margin="0,12,0,0">
+                    <StackLayout>
+                        <Label Text="Notify on start" />
+                        <Switch IsToggled="{Binding NotifyOnStart}"
+                                IsEnabled="False" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Notify on end" />
+                        <Switch IsToggled="{Binding NotifyOnEnd}"
+                                IsEnabled="False" />
+                    </StackLayout>
+                </StackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

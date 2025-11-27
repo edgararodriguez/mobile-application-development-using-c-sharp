@@ -4,12 +4,16 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:C971.Models"
-    xmlns:viewModels="clr-namespace:C971.ViewModels.Courses"
     Title="Courses">
 
     <ContentPage.ToolbarItems>
-        <!-- Optional: pull-to-refresh + toolbar refresh both use same command -->
+        <ToolbarItem Text="Add"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="OnAddCourseClicked" />
         <ToolbarItem Text="Refresh"
+                     Order="Primary"
+                     Priority="1"
                      Command="{Binding LoadCoursesCommand}" />
     </ContentPage.ToolbarItems>
 
@@ -22,9 +26,6 @@
                    FontAttributes="Bold"
                    HorizontalOptions="Center" />
 
-            <Label Text="{Binding Term}"
-                   IsVisible="False" />
-
             <Label Text="Courses for this term"
                    FontSize="14"
                    TextColor="Gray"
@@ -32,7 +33,10 @@
 
             <!-- Course list -->
             <RefreshView Command="{Binding LoadCoursesCommand}">
-                <CollectionView ItemsSource="{Binding Courses}">
+                <CollectionView ItemsSource="{Binding Courses}"
+                                SelectionMode="Single"
+                                SelectionChanged="OnCourseSelected">
+
                     <CollectionView.EmptyView>
                         <Label Text="No courses added for this term yet."
                                HorizontalOptions="Center"
@@ -74,19 +78,11 @@
                                         </Label.FormattedText>
                                     </Label>
 
-                                    <!-- Instructor row (optional) -->
+                                    <!-- Instructor row -->
                                     <Label Grid.Row="2" Grid.ColumnSpan="2"
                                            FontSize="13"
                                            TextColor="Gray"
-                                           IsVisible="{Binding InstructorName, Converter={StaticResource NullToBoolConverter}}">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="Instructor: " />
-                                                <Span Text="{Binding InstructorName}" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-
+                                           Text="{Binding InstructorName, StringFormat='Instructor: {0}'}" />
                                 </Grid>
                             </Frame>
                         </DataTemplate>

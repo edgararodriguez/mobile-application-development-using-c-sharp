@@ -1,3 +1,4 @@
+using System.Linq;
 using C971.Models;
 using C971.ViewModels.Courses;
 
@@ -22,6 +23,22 @@ public partial class CoursesListPage : ContentPage
         if (_viewModel.LoadCoursesCommand.CanExecute(null))
         {
             _viewModel.LoadCoursesCommand.Execute(null);
+        }
+    }
+
+    private async void OnAddCourseClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new AddEditCoursePage(_viewModel.Term.Id));
+    }
+
+    private async void OnCourseSelected(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection.FirstOrDefault() is Course selected)
+        {
+            // Clear selection so tapping again works
+            ((CollectionView)sender).SelectedItem = null;
+
+            await Navigation.PushAsync(new CourseDetailPage(selected.Id));
         }
     }
 }

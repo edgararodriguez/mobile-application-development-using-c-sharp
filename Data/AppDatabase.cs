@@ -17,12 +17,15 @@ public class AppDatabase
         Connection = new SQLiteAsyncConnection(dbPath);
     }
 
-    public Task InitAsync() =>
-        Connection.CreateTableAsync<Term>()
-        .ContinueWith(_ => Connection.CreateTableAsync<Course>()).Unwrap()
-        .ContinueWith(_ => Connection.CreateTableAsync<Assessment>()).Unwrap();
+    public async Task InitAsync()
+    {
+        await Connection.CreateTableAsync<Term>();
+        await Connection.CreateTableAsync<Course>();
+        // You can add Assessment later if needed
+        // await Connection.CreateTableAsync<Assessment>();
+    }
 
-    // ---------- TERM CRUD (used by ViewModels) ----------
+    // ---------- TERM CRUD ----------
 
     public Task<List<Term>> GetTermsAsync() =>
         Connection.Table<Term>()
@@ -48,11 +51,8 @@ public class AppDatabase
     public Task<int> DeleteTermAsync(Term term) =>
         Connection.DeleteAsync(term);
 
-    // ---------- COURSE CRUD (for C1 and later tasks) ----------
+    // ---------- COURSE CRUD (C1/C2) ----------
 
-    /// <summary>
-    /// Gets all courses for a specific term, ordered by start date.
-    /// </summary>
     public Task<List<Course>> GetCoursesForTermAsync(int termId) =>
         Connection.Table<Course>()
                   .Where(c => c.TermId == termId)
