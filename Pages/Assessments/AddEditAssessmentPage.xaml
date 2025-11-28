@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="C971.Pages.Assessments.AddEditAssessmentPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:C971.Models"
+    Title="Assessment">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout Padding="16" Spacing="12">
+
+                <Label Text="Name" />
+                <Entry Text="{Binding Assessment.Name}"
+                       Placeholder="Enter assessment name" />
+
+                <Label Text="Type" />
+                <Picker Title="Select type"
+                        SelectedItem="{Binding Assessment.Type}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type models:AssessmentType}">
+                            <models:AssessmentType>Objective</models:AssessmentType>
+                            <models:AssessmentType>Performance</models:AssessmentType>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <Label Text="Start Date" />
+                <DatePicker Date="{Binding Assessment.StartDate}" />
+
+                <Label Text="Due Date" />
+                <DatePicker Date="{Binding Assessment.DueDate}" />
+
+                <StackLayout Orientation="Horizontal" Spacing="24" Margin="0,12,0,0">
+                    <StackLayout>
+                        <Label Text="Notify on start" />
+                        <Switch IsToggled="{Binding Assessment.NotifyOnStart}" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Notify on end" />
+                        <Switch IsToggled="{Binding Assessment.NotifyOnEnd}" />
+                    </StackLayout>
+                </StackLayout>
+
+                <Grid ColumnDefinitions="*,*"
+                      Margin="0,24,0,0">
+                    <Button Grid.Column="0"
+                            Text="Cancel"
+                            Command="{Binding CancelCommand}" />
+                    <Button Grid.Column="1"
+                            Text="Save"
+                            Command="{Binding SaveCommand}" />
+                </Grid>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,4 +1,5 @@
 using C971.Models;
+using C971.Pages.Assessments;
 
 namespace C971.Pages.Courses;
 
@@ -46,6 +47,13 @@ public partial class CourseDetailPage : ContentPage
 
             await App.Database.DeleteCourseAsync(course);
             await Navigation.PopAsync();
+        }
+    }
+    private async void OnManageAssessmentsClicked(object sender, EventArgs e)
+    {
+        if (BindingContext is Course course)
+        {
+            await Navigation.PushAsync(new AssessmentsListPage(course));
         }
     }
 }

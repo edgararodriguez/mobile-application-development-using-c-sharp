@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="C971.Pages.Courses.CourseDetailPage"
+    x:Class="C971.Pages.Assessments.AssessmentDetailPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Course Detail">
+    Title="Assessment Detail">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Edit"
@@ -20,11 +20,11 @@
         <ScrollView>
             <VerticalStackLayout Padding="16" Spacing="8">
 
-                <Label Text="{Binding Title}"
+                <Label Text="{Binding Name}"
                        FontSize="24"
                        FontAttributes="Bold" />
 
-                <Label Text="{Binding Status}"
+                <Label Text="{Binding Type}"
                        FontSize="14"
                        TextColor="Gray" />
 
@@ -33,23 +33,11 @@
                         <FormattedString>
                             <Span Text="Start: " />
                             <Span Text="{Binding StartDate, StringFormat='{0:d}'}" />
-                            <Span Text="   •   End: " />
-                            <Span Text="{Binding EndDate, StringFormat='{0:d}'}" />
+                            <Span Text="   •   Due: " />
+                            <Span Text="{Binding DueDate, StringFormat='{0:d}'}" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-
-                <Label Text="Instructor"
-                       FontAttributes="Bold"
-                       Margin="0,12,0,0" />
-                <Label Text="{Binding InstructorName}" />
-                <Label Text="{Binding InstructorPhone}" />
-                <Label Text="{Binding InstructorEmail}" />
-
-                <Label Text="Notes"
-                       FontAttributes="Bold"
-                       Margin="0,12,0,0" />
-                <Label Text="{Binding Notes}" />
 
                 <StackLayout Orientation="Horizontal" Spacing="24" Margin="0,12,0,0">
                     <StackLayout>
@@ -64,9 +52,6 @@
                     </StackLayout>
                 </StackLayout>
 
-                <Button Text="Manage Assessments"
-                        Margin="0,16,0,0"
-                        Clicked="OnManageAssessmentsClicked" />
             </VerticalStackLayout>
         </ScrollView>
     </ContentPage.Content>

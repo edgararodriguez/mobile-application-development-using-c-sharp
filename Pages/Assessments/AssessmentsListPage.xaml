@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="C971.Pages.Assessments.AssessmentsListPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:C971.Models"
+    Title="Assessments">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="OnAddAssessmentClicked" />
+        <ToolbarItem Text="Refresh"
+                     Order="Primary"
+                     Priority="1"
+                     Command="{Binding LoadAssessmentsCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <VerticalStackLayout Padding="16" Spacing="12">
+
+            <Label Text="{Binding Course.Title}"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Assessments for this course"
+                   FontSize="14"
+                   TextColor="Gray"
+                   HorizontalOptions="Center" />
+
+            <RefreshView Command="{Binding LoadAssessmentsCommand}">
+                <CollectionView ItemsSource="{Binding Assessments}"
+                                SelectionMode="Single"
+                                SelectionChanged="OnAssessmentSelected">
+
+                    <CollectionView.EmptyView>
+                        <Label Text="No assessments added for this course yet."
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               TextColor="Gray" />
+                    </CollectionView.EmptyView>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Assessment">
+                            <Frame Margin="0,6"
+                                   Padding="10"
+                                   HasShadow="False"
+                                   BorderColor="{DynamicResource Gray300}">
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="{Binding Name}"
+                                           FontSize="16"
+                                           FontAttributes="Bold" />
+                                    <Label Text="{Binding Type}"
+                                           FontSize="13"
+                                           TextColor="Gray" />
+                                    <Label FontSize="13"
+                                           TextColor="Gray">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Start: " />
+                                                <Span Text="{Binding StartDate, StringFormat='{0:d}'}" />
+                                                <Span Text="   •   Due: " />
+                                                <Span Text="{Binding DueDate, StringFormat='{0:d}'}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

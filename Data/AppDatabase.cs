@@ -5,76 +5,83 @@ using System.Threading.Tasks;
 using C971.Models;
 using SQLite;
 
-namespace C971.Data;
-
-public class AppDatabase
+namespace C971.Data
 {
-    public SQLiteAsyncConnection Connection { get; }
 
-    public AppDatabase()
+    public class AppDatabase
     {
-        var dbPath = Path.Combine(FileSystem.AppDataDirectory, "c971.db3");
-        Connection = new SQLiteAsyncConnection(dbPath);
-    }
+        public SQLiteAsyncConnection Connection { get; }
 
-    public async Task InitAsync()
-    {
-        await Connection.CreateTableAsync<Term>();
-        await Connection.CreateTableAsync<Course>();
-        // You can add Assessment later if needed
-        // await Connection.CreateTableAsync<Assessment>();
-    }
-
-    // ---------- TERM CRUD ----------
-
-    public Task<List<Term>> GetTermsAsync() =>
-        Connection.Table<Term>()
-                  .OrderBy(t => t.StartDate)
-                  .ToListAsync();
-
-    public Task<Term?> GetTermAsync(int id) =>
-        Connection.Table<Term>()
-                  .FirstOrDefaultAsync(t => t.Id == id);
-
-    public Task<int> SaveTermAsync(Term term)
-    {
-        if (term.Id == 0)
+        public AppDatabase()
         {
-            return Connection.InsertAsync(term);
+            var dbPath = Path.Combine(FileSystem.AppDataDirectory, "c971.db3");
+            Connection = new SQLiteAsyncConnection(dbPath);
         }
-        else
+
+        public async Task InitAsync()
         {
-            return Connection.UpdateAsync(term);
+            await Connection.CreateTableAsync<Term>();
+            await Connection.CreateTableAsync<Course>();
+            await Connection.CreateTableAsync<Assessment>();
         }
+
+        // ------------------ TERM CRUD ------------------
+
+        public Task<List<Term>> GetTermsAsync() =>
+            Connection.Table<Term>()
+                      .OrderBy(t => t.StartDate)
+                      .ToListAsync();
+
+        public Task<Term?> GetTermAsync(int id) =>
+            Connection.Table<Term>()
+                      .FirstOrDefaultAsync(t => t.Id == id);
+
+        public Task<int> SaveTermAsync(Term term) =>
+            term.Id == 0
+                ? Connection.InsertAsync(term)
+                : Connection.UpdateAsync(term);
+
+        public Task<int> DeleteTermAsync(Term term) =>
+            Connection.DeleteAsync(term);
+
+        // ------------------ COURSE CRUD ------------------
+
+        public Task<List<Course>> GetCoursesForTermAsync(int termId) =>
+            Connection.Table<Course>()
+                      .Where(c => c.TermId == termId)
+                      .OrderBy(c => c.StartDate)
+                      .ToListAsync();
+
+        public Task<Course?> GetCourseAsync(int id) =>
+            Connection.Table<Course>()
+                      .FirstOrDefaultAsync(c => c.Id == id);
+
+        public Task<int> SaveCourseAsync(Course course) =>
+            course.Id == 0
+                ? Connection.InsertAsync(course)
+                : Connection.UpdateAsync(course);
+
+        public Task<int> DeleteCourseAsync(Course course) =>
+            Connection.DeleteAsync(course);
+
+        // ------------------ ASSESSMENT CRUD ------------------
+
+        public Task<List<Assessment>> GetAssessmentsForCourseAsync(int courseId) =>
+            Connection.Table<Assessment>()
+                      .Where(a => a.CourseId == courseId)
+                      .OrderBy(a => a.StartDate)
+                      .ToListAsync();
+
+        public Task<Assessment?> GetAssessmentAsync(int id) =>
+            Connection.Table<Assessment>()
+                      .FirstOrDefaultAsync(a => a.Id == id);
+
+        public Task<int> SaveAssessmentAsync(Assessment assessment) =>
+            assessment.Id == 0
+                ? Connection.InsertAsync(assessment)
+                : Connection.UpdateAsync(assessment);
+
+        public Task<int> DeleteAssessmentAsync(Assessment assessment) =>
+            Connection.DeleteAsync(assessment);
     }
-
-    public Task<int> DeleteTermAsync(Term term) =>
-        Connection.DeleteAsync(term);
-
-    // ---------- COURSE CRUD (C1/C2) ----------
-
-    public Task<List<Course>> GetCoursesForTermAsync(int termId) =>
-        Connection.Table<Course>()
-                  .Where(c => c.TermId == termId)
-                  .OrderBy(c => c.StartDate)
-                  .ToListAsync();
-
-    public Task<Course?> GetCourseAsync(int id) =>
-        Connection.Table<Course>()
-                  .FirstOrDefaultAsync(c => c.Id == id);
-
-    public Task<int> SaveCourseAsync(Course course)
-    {
-        if (course.Id == 0)
-        {
-            return Connection.InsertAsync(course);
-        }
-        else
-        {
-            return Connection.UpdateAsync(course);
-        }
-    }
-
-    public Task<int> DeleteCourseAsync(Course course) =>
-        Connection.DeleteAsync(course);
 }
