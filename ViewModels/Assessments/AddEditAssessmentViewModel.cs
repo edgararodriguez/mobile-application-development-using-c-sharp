@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using C971.Models;
+using C971.Services;
 using Microsoft.Maui.Controls;
 
 namespace C971.ViewModels.Assessments
@@ -99,7 +100,8 @@ namespace C971.ViewModels.Assessments
 
             await App.Database.SaveAssessmentAsync(Assessment);
 
-            // ScheduleAssessmentNotifications(Assessment);
+            // Schedule alerts for this assessment (C5 rubric)
+            await NotificationService.ScheduleAssessmentNotificationsAsync(Assessment);
 
             await Application.Current.MainPage.Navigation.PopAsync();
         }

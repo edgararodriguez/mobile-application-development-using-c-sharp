@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using C971.Models;
+using C971.Services;
 using Microsoft.Maui.Controls;
 
 namespace C971.ViewModels.Courses
@@ -98,6 +99,10 @@ namespace C971.ViewModels.Courses
             }
 
             await App.Database.SaveCourseAsync(Course);
+
+            // Schedule alerts for this course (C4 rubric)
+            await NotificationService.ScheduleCourseNotificationsAsync(Course);
+
             await Application.Current.MainPage.Navigation.PopAsync();
         }
 
