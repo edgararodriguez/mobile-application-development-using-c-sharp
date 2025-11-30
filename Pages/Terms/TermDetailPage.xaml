@@ -7,7 +7,14 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Edit"
+                     Order="Primary"
+                     Priority="0"
                      Clicked="OnEditTermClicked" />
+
+        <ToolbarItem Text="Delete"
+                     Order="Primary"
+                     Priority="1"
+                     Clicked="OnDeleteTermClicked" />
     </ContentPage.ToolbarItems>
 
     <ScrollView>

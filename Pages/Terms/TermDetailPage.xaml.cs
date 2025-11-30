@@ -42,4 +42,25 @@ public partial class TermDetailPage : ContentPage
             await Navigation.PushAsync(new AddEditTermPage(t.Id));
         }
     }
+
+    private async void OnDeleteTermClicked(object sender, EventArgs e)
+    {
+        if (BindingContext is not Term term)
+            return;
+
+        bool confirm = await DisplayAlert(
+            "Delete Term",
+            "Are you sure you want to delete this term? This action cannot be undone.",
+            "Delete",
+            "Cancel");
+
+        if (!confirm)
+            return;
+
+        // Delete from DB
+        await App.Database.DeleteTermAsync(term);
+
+        // Navigate back
+        await Navigation.PopAsync();
+    }
 }
