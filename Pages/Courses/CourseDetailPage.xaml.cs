@@ -1,6 +1,7 @@
 using C971.Models;
 using C971.Pages.Assessments;
 
+using Microsoft.Maui.ApplicationModel.DataTransfer;
 namespace C971.Pages.Courses;
 
 public partial class CourseDetailPage : ContentPage
@@ -55,5 +56,26 @@ public partial class CourseDetailPage : ContentPage
         {
             await Navigation.PushAsync(new AssessmentsListPage(course));
         }
+    }
+    // Share Notes handler for rubric C5
+    private async void OnShareNotesClicked(object sender, EventArgs e)
+    {
+        if (BindingContext is not Course course)
+            return;
+
+        if (string.IsNullOrWhiteSpace(course.Notes))
+        {
+            await DisplayAlert(
+                "No Notes",
+                "There are no notes to share for this course.",
+                "OK");
+            return;
+        }
+
+        await Share.RequestAsync(new ShareTextRequest
+        {
+            Text = course.Notes,
+            Title = $"Share Notes for {course.Title}"
+        });
     }
 }
