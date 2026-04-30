@@ -74,6 +74,9 @@
         <Button Text="Add Course"
                 Clicked="OnAddCourseClicked"
                 HorizontalOptions="Fill" />
+        <Button Text="View Course Report"
+        Clicked="OnViewReportClicked"
+        HorizontalOptions="Fill" />
 
     </VerticalStackLayout>
 </ContentPage>

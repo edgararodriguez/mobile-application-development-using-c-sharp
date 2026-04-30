@@ -31,6 +31,12 @@ public partial class CoursesListPage : ContentPage
         await Navigation.PushAsync(new AddEditCoursePage(_viewModel.Term.Id));
     }
 
+    private async void OnViewReportClicked(object sender, EventArgs e)
+    {
+        await _viewModel.LoadCoursesAsync();
+        await Navigation.PushAsync(new CourseReportPage(_viewModel.Term, _viewModel.Courses));
+    }
+
     private async void OnCourseSelected(object sender, SelectionChangedEventArgs e)
     {
         if (e.CurrentSelection.FirstOrDefault() is Course selected)
