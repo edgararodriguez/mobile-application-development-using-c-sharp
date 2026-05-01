@@ -1,20 +1,19 @@
 ﻿using C971.Data;
+using C971.Pages;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace C971
 {
     public partial class App : Application
     {
-        // Single shared database instance
-        public static AppDatabase Database { get; } = new();
+        public static AppDatabase Database =>
+            Current?.Handler?.MauiContext?.Services.GetRequiredService<AppDatabase>()
+            ?? throw new InvalidOperationException("AppDatabase is not available.");
 
         public App()
         {
             InitializeComponent();
-
-            // Ensure tables exist
-            _ = Database.InitAsync();
-
-            MainPage = new AppShell();
+            MainPage = new NavigationPage(new LoginPage());
         }
     }
 }
