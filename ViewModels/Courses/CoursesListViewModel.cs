@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using C971.Models;
+using C971.Services;
 
 namespace C971.ViewModels.Courses;
 
@@ -44,18 +45,12 @@ public partial class CoursesListViewModel : ObservableObject
     {
         Courses.Clear();
 
-        IEnumerable<Course> filtered = _allCourses;
-
-        if (!string.IsNullOrWhiteSpace(SearchText))
-        {
-            var query = SearchText.Trim().ToLowerInvariant();
-
-            filtered = _allCourses.Where(c =>
-                (!string.IsNullOrWhiteSpace(c.Title) && c.Title.ToLowerInvariant().Contains(query)) ||
-                (!string.IsNullOrWhiteSpace(c.InstructorName) && c.InstructorName.ToLowerInvariant().Contains(query)) ||
-                c.Status.ToString().ToLowerInvariant().Contains(query)
-            );
-        }
+        var filtered = _allCourses.Where(c =>
+            CourseSearchService.Matches(
+                c.Title,
+                c.InstructorName,
+                c.Status.ToString(),
+                SearchText));
 
         foreach (var course in filtered)
             Courses.Add(course);

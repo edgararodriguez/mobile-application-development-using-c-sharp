@@ -1,12 +1,9 @@
-using C971.Pages.Courses;
+using C971.Services;
 
 namespace C971.Pages;
 
 public partial class LoginPage : ContentPage
 {
-    private const string ValidUsername = "student";
-    private const string ValidPassword = "wgu123";
-
     public LoginPage()
     {
         InitializeComponent();
@@ -16,10 +13,10 @@ public partial class LoginPage : ContentPage
     {
         ErrorLabel.IsVisible = false;
 
-        var username = UsernameEntry.Text?.Trim() ?? string.Empty;
-        var password = PasswordEntry.Text ?? string.Empty;
+        var username = UsernameEntry.Text;
+        var password = PasswordEntry.Text;
 
-        if (username == ValidUsername && password == ValidPassword)
+        if (LoginValidator.IsValid(username, password))
         {
             Application.Current!.MainPage = new AppShell();
             return;
